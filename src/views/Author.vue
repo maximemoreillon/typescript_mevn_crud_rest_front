@@ -4,20 +4,21 @@ import { inject, ref, onMounted} from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
 const axios: any  = inject('axios')  // inject axios
-const post = ref(null)
+const author = ref(null)
 
 const router = useRouter()
 const route = useRoute()
-const post_id = route.params._id
+const author_id = route.params._id
+
 
 const delete_post = async () => {
-  await axios.delete(`/posts/${post_id}`)
+  await axios.delete(`/authors/${author_id}`)
   router.push({name: 'posts'})
 }
 
 const get_post = async () => {
-  const {data} = await axios.get(`/posts/${post_id}`)
-  post.value = data
+  const {data} = await axios.get(`/authors/${author_id}`)
+  author.value = data
 }
 
 onMounted(() => {
@@ -30,16 +31,10 @@ onMounted(() => {
 
 <template>
 
-  <template v-if="post">
-    <h1>{{post['title']}}</h1>
-    <p>Author: <router-link
-      v-if="post.author"
-      :to="{ name: 'author', params: {_id: post.author._id} }">
-      {{post.author.name}}
-    </router-link>
-    </p>
+  <template v-if="author">
+    <h1>{{author['name']}}</h1>
     <div class="toolbar">
-      <button @click="delete_post()">DELETE post</button>
+      <button @click="delete_post()">DELETE author</button>
     </div>
   </template>
 
