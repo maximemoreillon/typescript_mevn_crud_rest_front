@@ -37,10 +37,6 @@ onMounted(() => {
   </div>
   <template v-if="post">
     <h2>{{post.title}}</h2>
-    <p>Author: {{post.author}}</p>
-    <p>
-      {{post.content}}
-    </p>
   </template>
 
 </template>
