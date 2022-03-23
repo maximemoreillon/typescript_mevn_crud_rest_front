@@ -3,11 +3,13 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from './views/Home.vue'
 import Authors from './views/Authors.vue'
 import Posts from './views/Posts.vue'
+import Post from './views/Post.vue'
 
 const routes : any[] = [
   {path: '/', name: 'home', component: Home},
   {path: '/authors', name: 'authors', component: Authors},
   {path: '/posts', name: 'posts', component: Posts},
+  {path: '/posts/:_id', name: 'post', component: Post},
 
 ]
 
@@ -19,4 +21,4 @@ const router = createRouter({
   routes, // short for `routes: routes`
 })
 
-export { router }
+export default router
