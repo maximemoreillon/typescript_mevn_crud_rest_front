@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 
-import { inject, ref} from 'vue'
+import { inject, ref, onMounted } from 'vue'
 
 const axios: any = inject('axios')  // inject axios
 
@@ -15,10 +15,12 @@ const create_post = async (): void => {
 const read_posts = async (): void => {
   const url = 'http://172.16.98.151:7070/posts'
   const {data} = await axios.get(url)
-  posts.value.splice(0,posts.value.length)
-  data.forEach(post => { posts.value.push(post) })
-  
+  posts.value = data 
 }
+
+onMounted( () => {
+  read_posts()
+})
 
 
 
@@ -27,7 +29,6 @@ const read_posts = async (): void => {
 <template>
   <h1>Posts</h1>
   <div class="toolbar">
-    <button @click="read_posts()">GET posts</button>
     <button @click="create_post()">POST post</button>
   </div>
 
