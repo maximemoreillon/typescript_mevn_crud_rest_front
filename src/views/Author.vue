@@ -28,6 +28,7 @@ const update_author = async () => {
 }
 
 const delete_author = async () => {
+  if(!confirm(`Delete author?`)) return
   await axios.delete(`/authors/${author_id}`)
   router.push({name: 'authors'})
 }

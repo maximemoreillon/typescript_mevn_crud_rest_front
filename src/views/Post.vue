@@ -37,6 +37,7 @@ const update_post = async () => {
 }
 
 const delete_post = async () => {
+  if(!confirm(`Delete post?`)) return
   await axios.delete(`/posts/${post_id}`)
   router.push({name: 'posts'})
 }
