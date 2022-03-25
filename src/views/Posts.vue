@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 
 import { inject, ref, onMounted } from 'vue'
+import CreatePostModal from '../components/CreatePostModal.vue'
 
 const axios: any  = inject('axios')  // inject axios
 
@@ -24,9 +25,7 @@ onMounted( () => {
   <h1>Posts</h1>
 
   <p class="toolbar">
-    <router-link :to="{ name: 'create_post' }">
-      Create post
-    </router-link>
+    <CreatePostModal />
   </p>
 
   <table>
@@ -39,7 +38,7 @@ onMounted( () => {
       :key="i">
       <td>
         <router-link :to="{ name: 'post', params: {_id} }">
-          {{title}}
+          {{title || 'Unnnamed'}}
         </router-link>
       </td>
       <td>
