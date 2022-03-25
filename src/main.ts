@@ -4,9 +4,9 @@ import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
-const app = createApp(App)
+axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL
 
-axios.defaults.baseURL = 'http://192.168.1.2:7070'
+const app = createApp(App)
 
 // I don't like this
 app.use(router)
